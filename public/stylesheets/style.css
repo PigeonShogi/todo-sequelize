@@ -1,0 +1,10 @@
+.for-dummies {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(204, 232, 207);
+  width: 500px;
+  height: 500px;
+  font-size: 32px;
+  text-align: center;
+}
