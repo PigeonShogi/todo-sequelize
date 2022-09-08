@@ -1,23 +1,22 @@
-<div class="container">
-
-  <div class="row mt-5 d-flex flex-row justify-content-evenly">
-
-    <div class="card" style="width: 18rem;">
-      <img
-        src="https://cf.geekdo-images.com/kjCm4ZvPjIZxS-mYgSPy1g__imagepagezoom/img/XMJcthqDMCK1NQl04WW33U2Zy5c=/fit-in/1200x900/filters:no_upscale():strip_icc()/pic7013651.jpg"
-        class="card-img-top mt-3" alt="Image for Card">
-      <div class="card-body">
-        <h5 class="card-title">懶人包預設 Card</h5>
-        <p class="card-text">這是懶人包的 index.hbs。點選下列按鈕前往 Bootstrap Cards 官方文件
-        </p>
-        <a href="https://getbootstrap.com/docs/5.2/components/card/#about" class="btn btn-primary">Bootstrap Cards</a>
+<a href="/todos/new" class="btn btn-primary mb-3">Create</a>
+<ul class="list-group">
+  {{#each todos}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-auto me-auto">
+        <input class="align-middle" type="checkbox" name="isDone" {{#if this.isDone }} checked {{/if}} disabled>
+        <h4 class="d-inline ms-2 align-middle">
+          {{ this.name }}
+        </h4>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-secondary" href="./todos/{{ this.id }}">detail</a>
+        <a class="btn btn-success" href="./todos/{{ this.id }}/edit">edit</a>
+        <form action="./todos/{{ this.id }}?_method=DELETE" method="POST" style="display: inline;">
+          <button class="btn btn-danger" type="submit">delete</button>
+        </form>
       </div>
     </div>
-
-    <div class="row for-dummies">
-      <p>看到這個豆綠色色塊表示懶人包正在使用 express.static 提供的靜態CSS檔</p>
-      <a href="/users/login" class="btn btn-secondary">登入</a>
-    </div>
-  </div>
-
-</div>
+  </li>
+  {{/each}}
+</ul>
