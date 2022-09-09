@@ -24,10 +24,11 @@ app.use(session({
   saveUninitialized: true
 }))
 
-usePassport(app)
-
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
+
+usePassport(app)
 
 app.use(flash())
 app.use((req, res, next) => {
@@ -35,10 +36,10 @@ app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.error_msg = req.flash('error_msg')
   next()
 })
 
-app.use(methodOverride('_method'))
 app.use(routes)
 
 app.listen(port, () => {
