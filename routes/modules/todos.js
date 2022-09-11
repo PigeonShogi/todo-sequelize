@@ -10,7 +10,6 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
   const UserId = req.user.id
   const name = req.body.name
-  console.log('UserId, name ===', UserId, name)
   return Todo.create({ name, UserId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -38,10 +37,8 @@ router.put('/:id', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
   const { isDone, name } = req.body
-  console.log('req.body === ', req.body)
   return Todo.findOne({ where: { id, UserId } })
     .then(todo => {
-      console.log('name === ', name)
       todo.name = name
       todo.isDone = isDone === 'on'
       return todo.save()
